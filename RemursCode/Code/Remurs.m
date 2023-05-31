@@ -97,7 +97,7 @@ X        = Unfold(tX, size(tX), N+1); % Data in vector form. Matrix: M*d.
 
 % tic
 Xty      = X'*y;
-totalTime = totalTime + toc;
+% totalTime = totalTime + toc;
 
 numFea   = size(X,2);
 numSam   = size(X,1);
@@ -115,7 +115,7 @@ end
 %disp('Time for pre-computation:')
 %disp(totalTime)
 %% Iterate: Main algorithm
-tic;
+% tic;
 for k = 1:max_iter
     % Update tU: quadratic proximal operator
     
