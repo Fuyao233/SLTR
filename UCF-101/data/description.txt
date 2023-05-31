@@ -1,0 +1,14 @@
+SPARSITY_RATIO:80
+Grey:True
+Size:32*24
+Categories information in each group:(the former is the negtive category the latter is positive)
+Group0:	ApplyEyeMakeup	ApplyLipstick
+Group1:	Archery	BabyCrawling
+Group2:	BalanceBeam	BandMarching
+Group3:	BaseballPitch	Basketball
+Group4:	BasketballDunk	BenchPress
+Group5:	Biking	Billiards
+Group6:	BlowDryHair	BlowingCandles
+Group7:	BodyWeightSquats	Bowling
+Group8:	BoxingPunchingBag	BoxingSpeedBag
+Group9:	BreastStroke	BrushingTeeth

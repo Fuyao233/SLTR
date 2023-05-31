@@ -1,0 +1,387 @@
+clear;
+>> clear;vary_N_exp
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+    50    20    20     5
+
+The size of invert samples is
+    20    20     5    50
+
+The size of responses is
+    50
+
+The size of vector-form X is
+          50        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 50
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.001000
+Elapsed time is 1.3349 sec
+Response  Error is 1.6198
+Estimation Error is 1.0017
+===== Prox_Remurs =====
+cvTau : 0.000000; cvLambda : 0.000000; cvEpsilon : 0.100000
+Elapsed time is 0.1955 sec
+Response  Error is 1.6123
+Estimation Error is 0.9994
+===== Lasso =====
+Elapsed time is 0.0833 sec
+Response Error is 4.5083 
+Estimation error is 1.0110 
+===== Elasticnet =====
+Elapsed time is 0.0858 sec
+Response Error is 4.5759 
+Estimation error is 1.0030 
+===== SURF =====
+cvAlpha : 0.005000; cvEpsilon : 0.000500; cvR : 5
+Elapsed time is 4.4450 sec
+Response Error is 1.643910
+Estimation Error is 1.002877
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   100    20    20     5
+
+The size of invert samples is
+    20    20     5   100
+
+The size of responses is
+   100
+
+The size of vector-form X is
+         100        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 100
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.005000
+Elapsed time is 1.3995 sec
+Response  Error is 1.0946
+Estimation Error is 1.0075
+===== Prox_Remurs =====
+cvTau : 0.000000; cvLambda : 0.000000; cvEpsilon : 0.100000
+Elapsed time is 0.1849 sec
+Response  Error is 1.0798
+Estimation Error is 0.9987
+===== Lasso =====
+Elapsed time is 0.1776 sec
+Response Error is 1.6433 
+Estimation error is 0.9987 
+===== Elasticnet =====
+Elapsed time is 0.1790 sec
+Response Error is 1.6433 
+Estimation error is 0.9987 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.100000; cvR : 4
+Elapsed time is 0.9183 sec
+Response Error is 1.710083
+Estimation Error is 1.347565
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   150    20    20     5
+
+The size of invert samples is
+    20    20     5   150
+
+The size of responses is
+   150
+
+The size of vector-form X is
+         150        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 150
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.100000
+Elapsed time is 0.0011 sec
+Response  Error is 0.9972
+Estimation Error is 1.0000
+===== Prox_Remurs =====
+cvTau : 0.050000; cvLambda : 0.010000; cvEpsilon : 0.500000
+Elapsed time is 0.2055 sec
+Response  Error is 0.9787
+Estimation Error is 0.9986
+===== Lasso =====
+Elapsed time is 0.3046 sec
+Response Error is 1.9571 
+Estimation error is 1.0021 
+===== Elasticnet =====
+Elapsed time is 0.3110 sec
+Response Error is 1.9575 
+Estimation error is 0.9992 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000100; cvR : 1
+Elapsed time is 0.0093 sec
+Response Error is 0.997328
+Estimation Error is 1.000112
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   200    20    20     5
+
+The size of invert samples is
+    20    20     5   200
+
+The size of responses is
+   200
+
+The size of vector-form X is
+         200        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 200
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.001000
+Elapsed time is 1.4729 sec
+Response  Error is 0.8369
+Estimation Error is 1.0013
+===== Prox_Remurs =====
+cvTau : 0.050000; cvLambda : 0.001000; cvEpsilon : 0.500000
+Elapsed time is 0.2022 sec
+Response  Error is 0.8351
+Estimation Error is 0.9997
+===== Lasso =====
+Elapsed time is 0.4782 sec
+Response Error is 1.9072 
+Estimation error is 1.0565 
+===== Elasticnet =====
+Elapsed time is 0.4640 sec
+Response Error is 1.8307 
+Estimation error is 1.0478 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000500; cvR : 1
+Elapsed time is 0.4943 sec
+Response Error is 0.837632
+Estimation Error is 0.999456
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   250    20    20     5
+
+The size of invert samples is
+    20    20     5   250
+
+The size of responses is
+   250
+
+The size of vector-form X is
+         250        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 250
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.010000
+Elapsed time is 1.5032 sec
+Response  Error is 0.7267
+Estimation Error is 1.0166
+===== Prox_Remurs =====
+cvTau : 0.000000; cvLambda : 0.000000; cvEpsilon : 0.100000
+Elapsed time is 0.2147 sec
+Response  Error is 0.7130
+Estimation Error is 0.9991
+===== Lasso =====
+Elapsed time is 0.5755 sec
+Response Error is 1.3757 
+Estimation error is 1.0011 
+===== Elasticnet =====
+Elapsed time is 0.5761 sec
+Response Error is 1.3708 
+Estimation error is 0.9920 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000500; cvR : 1
+Elapsed time is 1.5499 sec
+Response Error is 0.719854
+Estimation Error is 0.999093
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   300    20    20     5
+
+The size of invert samples is
+    20    20     5   300
+
+The size of responses is
+   300
+
+The size of vector-form X is
+         300        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 300
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.001000; cvBeta : 0.050000
+Elapsed time is 0.0010 sec
+Response  Error is 0.6455
+Estimation Error is 1.0000
+===== Prox_Remurs =====
+cvTau : 0.100000; cvLambda : 0.050000; cvEpsilon : 0.500000
+Elapsed time is 0.2220 sec
+Response  Error is 0.6419
+Estimation Error is 0.9991
+===== Lasso =====
+Elapsed time is 0.7169 sec
+Response Error is 1.3095 
+Estimation error is 0.9827 
+===== Elasticnet =====
+Elapsed time is 0.7134 sec
+Response Error is 1.3125 
+Estimation error is 0.9813 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000500; cvR : 1
+Elapsed time is 1.4667 sec
+Response Error is 0.644972
+Estimation Error is 0.999690
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   350    20    20     5
+
+The size of invert samples is
+    20    20     5   350
+
+The size of responses is
+   350
+
+The size of vector-form X is
+         350        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 350
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 0.005000; cvBeta : 0.001000
+Elapsed time is 1.3701 sec
+Response  Error is 0.6554
+Estimation Error is 0.9999
+===== Prox_Remurs =====
+cvTau : 0.000000; cvLambda : 0.000000; cvEpsilon : 0.100000
+Elapsed time is 0.2243 sec
+Response  Error is 0.6540
+Estimation Error is 0.9981
+===== Lasso =====
+Elapsed time is 0.9005 sec
+Response Error is 1.6386 
+Estimation error is 1.0088 
+===== Elasticnet =====
+Elapsed time is 0.9040 sec
+Response Error is 1.6337 
+Estimation error is 0.9957 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000100; cvR : 1
+Elapsed time is 0.2158 sec
+Response Error is 0.662144
+Estimation Error is 0.999896
+Dims: 3
+The size of coefficients is
+    20    20     5
+
+The size of samples is
+   400    20    20     5
+
+The size of invert samples is
+    20    20     5   400
+
+The size of responses is
+   400
+
+The size of vector-form X is
+         400        2000
+
+The size of vector-form W is
+        2000           1
+
+              p: [20 20 5]
+              N: 400
+              R: 1
+       sparsity: 0.8000
+    noise_coeff: 0.1000
+
+===== Remurs =====
+cvAlpha : 1.000000; cvBeta : 0.001000
+Elapsed time is 0.0877 sec
+Response  Error is 0.5480
+Estimation Error is 0.9995
+===== Prox_Remurs =====
+cvTau : 0.010000; cvLambda : 0.000100; cvEpsilon : 0.100000
+Elapsed time is 0.2200 sec
+Response  Error is 0.5477
+Estimation Error is 0.9996
+===== Lasso =====
+Elapsed time is 1.0629 sec
+Response Error is 1.2075 
+Estimation error is 0.9969 
+===== Elasticnet =====
+Elapsed time is 1.0874 sec
+Response Error is 1.2078 
+Estimation error is 0.9961 
+===== SURF =====
+cvAlpha : 0.000500; cvEpsilon : 0.000500; cvR : 1
+Elapsed time is 1.6346 sec
+Response Error is 0.548880
+Estimation Error is 0.999727
+>> 
