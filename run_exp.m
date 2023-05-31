@@ -36,7 +36,7 @@ warning off;
 
 rng(42);
 for dim_idx = 1:length(pList)
-    
+    dim_idx=4;
 %% Generate simulated datasets
 %clear X W Y Xvec Wvec invertX estimatedW fit;
 
@@ -111,6 +111,7 @@ end
 Remurs_res(dim_idx) = Remur;
 save('simulation_res/Remurs_res','Remurs_res')
 
+break
 % %% Prox_Remurs
 % % parameter settings
 % disp('===== Prox_Remurs =====')
