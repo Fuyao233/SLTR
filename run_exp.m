@@ -36,7 +36,7 @@ warning off;
 
 rng(114514);
 for dim_idx = 1:length(pList)
-dim_idx = 1
+
 %% Generate simulated datasets
 %clear X W Y Xvec Wvec invertX estimatedW fit;
 
@@ -158,6 +158,7 @@ Prox_Remur.totalMSE = totalMSE / repeat;
 Prox_Remur.totalEE = totalEE / repeat;
 Prox_Remur.part_time = iteration_time / repeat;
 Prox_Remur.cv_time = cv_time;
+
 if dim_idx == 1
     Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
 end
