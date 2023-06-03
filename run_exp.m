@@ -106,6 +106,9 @@ Remur.totalTime = totalTime / repeat;
 Remur.totalMSE = totalMSE / repeat;
 Remur.totalEE = totalEE / repeat;
 Remur.cv_time = cv_time;
+Remur.cv_par = [cvAlpha, cvBeta];
+
+
 if dim_idx == 1
     Remurs_res = repmat(Remur, 1, length(N));
 end
@@ -158,6 +161,7 @@ Prox_Remur.totalMSE = totalMSE / repeat;
 Prox_Remur.totalEE = totalEE / repeat;
 Prox_Remur.part_time = iteration_time / repeat;
 Prox_Remur.cv_time = cv_time;
+Prox_Remur.cv_par = [cvTau, cvLambda, cvEpsilon];
 
 if dim_idx == 1
     Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
@@ -331,6 +335,7 @@ SURF.totalTime = totalTime / repeat;
 SURF.totalMSE = norm(tensor(predY - Y)) / options.N;
 SURF.totalEE = norm(tensor(error)) / norm(tensor(Wvec));
 SURF.cv_time = cv_time;
+SURF.cv_par = [cvAlpha, cvEpsilon, cvR];
 
 if dim_idx == 1
     SURF_res = repmat(SURF, 1, length(N));
