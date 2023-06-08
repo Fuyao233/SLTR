@@ -121,16 +121,19 @@ fprintf('Estimation Error is %.4f\n',totalEE / repeat)
 % fprintf('cv_time is %.4f\n',cv_time)
 
 
-% Remur.totalTime = totalTime / repeat;
-% Remur.totalMSE = totalMSE / repeat;
-% Remur.totalEE = totalEE / repeat;
-% Remur.cv_time = cv_time;
-% if dim_idx == 1
-%     Remurs_res = repmat(Remur, 1, length(N));
-% end
-% 
-% Remurs_res(dim_idx) = Remur;
-% save('simulation_res/3D&4D/Remurs_res','Remurs_res')
+Remur.totalTime = totalTime / repeat;
+Remur.totalMSE = totalMSE / repeat;
+Remur.totalEE = totalEE / repeat;
+Remur.cv_time = cv_time;
+Remur.cv_par = [cvAlpha, cvBeta];
+
+
+if dim_idx == 1
+    Remurs_res = repmat(Remur, 1, length(N));
+end
+
+Remurs_res(dim_idx) = Remur;
+save('simulation_res/Remurs_res','Remurs_res')
 
 % break
 
@@ -176,18 +179,19 @@ fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
 fprintf('Response  Error is %.4f\n',totalMSE / repeat)
 fprintf('Estimation Error is %.4f\n',totalEE / repeat)
 
-% Prox_Remur.totalTime = totalTime / repeat;
-% Prox_Remur.totalMSE = totalMSE / repeat;
-% Prox_Remur.totalEE = totalEE / repeat;
-% Prox_Remur.part_time = iteration_time / repeat;
-% Prox_Remur.cv_time = cv_time;
-% 
-% if dim_idx == 1
-%     Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
-% end
-% 
-% Prox_Remur_res(dim_idx) = Prox_Remur;
-% save('simulation_res/3D&4D/Prox_Remur_res','Prox_Remur_res')
+Prox_Remur.totalTime = totalTime / repeat;
+Prox_Remur.totalMSE = totalMSE / repeat;
+Prox_Remur.totalEE = totalEE / repeat;
+Prox_Remur.part_time = iteration_time / repeat;
+Prox_Remur.cv_time = cv_time;
+Prox_Remur.cv_par = [cvTau, cvLambda, cvEpsilon];
+
+if dim_idx == 1
+    Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
+end
+
+Prox_Remur_res(dim_idx) = Prox_Remur;
+save('simulation_res/Prox_Remur_res','Prox_Remur_res')
 
 
 %% Lasso
@@ -354,6 +358,7 @@ SURF.totalTime = totalTime / repeat;
 SURF.totalMSE = norm(tensor(predY - Y)) / options.N;
 SURF.totalEE = norm(tensor(error)) / norm(tensor(Wvec));
 SURF.cv_time = cv_time;
+SURF.cv_par = [cvAlpha, cvEpsilon, cvR];
 
 if dim_idx == 1
     SURF_res = repmat(SURF, 1, length(N));
