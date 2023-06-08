@@ -11,21 +11,31 @@ pList  = [...
 N = 2000;
 %}
 
-pList  = [...
-    [10 10 5];...
-    [15 15 5];...
-    [20 20 5];...
-    [25 25 5];...
-    [30 30 5];...
-    [35 35 5];...
-    [40 40 5];...
-    ];
-N = [40 90 160 250 360 490 640]; %0.08
+% pList  = [...
+%     [10 10 5];...
+%     [15 15 5];...
+%     [20 20 5];...
+%     [25 25 5];...
+%     [30 30 5];...
+%     [35 35 5];...
+%     [40 40 5];...
+%     ];
+% N = [40 90 160 250 360 490 640]; %0.08
 
+pList = [...
+    [30 30 5 0];...
+    [35 35 5 0];...
+    [40 40 5 0];...
+    [20 20 10 5];...
+    [25 25 10 5];...
+    [30 30 10 5];...
+];
+N = [360, 490, 640, 1600, 2500, 3600];
 %pList  = [[10 10 5];];
 %N = [50];
 
-
+addpath('tensor_toolbox/');
+addpath('4D_test/');
 warning off;
 
 % Prox_Remur_res = [];
@@ -36,14 +46,17 @@ warning off;
 
 rng(114514);
 for dim_idx = 1:length(pList)
-
+dim_idx = 4;
 %% Generate simulated datasets
 %clear X W Y Xvec Wvec invertX estimatedW fit;
 
-addpath('tensor_toolbox/');
+
 % parameters for generating datasets��
 % options.p = [20 20 20];
 options.p = pList(dim_idx,:);
+if options.p(end) == 0
+   options.p = options.p(1:end-1);
+end
 %options.N = 100;
 options.N = N(dim_idx);
 options.R = 5;
@@ -59,7 +72,11 @@ M = length(options.p);
     invertX -- a tensor with shape p1 x p2 x...x pM x N
 %}
 %[X, W, Y, Xvec, Wvec, invertX] = generateData(options);
-[X, W, Y, Xvec, Wvec, invertX] = sparseGenerate(options);
+if length(options.p) == 3
+    [X, W, Y, Xvec, Wvec, invertX] = sparseGenerate(options);
+else
+    [X, W, Y, Xvec, Wvec, invertX] = sparse4DGenerate(options);
+end
 disp(options)
 
 %% Experiment settings
@@ -84,6 +101,8 @@ matrixY=reshape(Y.data,[options.N 1]);
         [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
         [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
         1, iter, epsilon);
+% cvAlpha = 5;
+% cvBeta = 1;
 
 for it = 1:repeat
     tic
@@ -99,19 +118,19 @@ end
 fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
 fprintf('Response  Error is %.4f\n',totalMSE / repeat)
 fprintf('Estimation Error is %.4f\n',totalEE / repeat)
-fprintf('cv_time is %.4f\n',cv_time)
+% fprintf('cv_time is %.4f\n',cv_time)
 
 
-Remur.totalTime = totalTime / repeat;
-Remur.totalMSE = totalMSE / repeat;
-Remur.totalEE = totalEE / repeat;
-Remur.cv_time = cv_time;
-if dim_idx == 1
-    Remurs_res = repmat(Remur, 1, length(N));
-end
-
-Remurs_res(dim_idx) = Remur;
-save('simulation_res/Remurs_res','Remurs_res')
+% Remur.totalTime = totalTime / repeat;
+% Remur.totalMSE = totalMSE / repeat;
+% Remur.totalEE = totalEE / repeat;
+% Remur.cv_time = cv_time;
+% if dim_idx == 1
+%     Remurs_res = repmat(Remur, 1, length(N));
+% end
+% 
+% Remurs_res(dim_idx) = Remur;
+% save('simulation_res/3D&4D/Remurs_res','Remurs_res')
 
 % break
 
@@ -137,6 +156,10 @@ matrixY=reshape(Y.data,[options.N 1]);
         [0.1, 0.2, 0.3, 0.4],...
     rho, 1, maxIter, minDiff);
 
+% cvTau = 0.01;
+% cvLambda = 1e-4;
+% cvEpsilon = 0.1;
+
 for it = 1:repeat
     tic
     [estimatedW, errSeq, it_time] = Prox_Remurs(double(invertX), matrixY, cvTau, cvLambda, cvEpsilon, rho, maxIter, minDiff);
@@ -153,18 +176,18 @@ fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
 fprintf('Response  Error is %.4f\n',totalMSE / repeat)
 fprintf('Estimation Error is %.4f\n',totalEE / repeat)
 
-Prox_Remur.totalTime = totalTime / repeat;
-Prox_Remur.totalMSE = totalMSE / repeat;
-Prox_Remur.totalEE = totalEE / repeat;
-Prox_Remur.part_time = iteration_time / repeat;
-Prox_Remur.cv_time = cv_time;
-
-if dim_idx == 1
-    Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
-end
-
-Prox_Remur_res(dim_idx) = Prox_Remur;
-save('simulation_res/Prox_Remur_res','Prox_Remur_res')
+% Prox_Remur.totalTime = totalTime / repeat;
+% Prox_Remur.totalMSE = totalMSE / repeat;
+% Prox_Remur.totalEE = totalEE / repeat;
+% Prox_Remur.part_time = iteration_time / repeat;
+% Prox_Remur.cv_time = cv_time;
+% 
+% if dim_idx == 1
+%     Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
+% end
+% 
+% Prox_Remur_res(dim_idx) = Prox_Remur;
+% save('simulation_res/3D&4D/Prox_Remur_res','Prox_Remur_res')
 
 
 %% Lasso
@@ -221,7 +244,7 @@ if dim_idx == 1
 end
 
 Lasso_res(dim_idx) = Lasso;
-save('simulation_res/Lasso_res','Lasso_res')
+% save('simulation_res/3D&4D/Lasso_res','Lasso_res')
 
 
 %% Elasticnet (vectorize X)
@@ -277,7 +300,7 @@ end
 
 Ela_res(dim_idx) = Ela;
 
-save('simulation_res/Ela_res','Ela_res')
+% save('simulation_res/3D&4D/Ela_res','Ela_res')
 
 %% SURF
 
@@ -338,6 +361,6 @@ end
 
 SURF_res(dim_idx) = SURF;
 
-save('simulation_res/SURF_res','SURF_res')
+% save('simulation_res/3D&4D/SURF_res','SURF_res')
 
 end
