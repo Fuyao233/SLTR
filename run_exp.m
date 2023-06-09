@@ -248,7 +248,7 @@ if dim_idx == 1
 end
 
 Lasso_res(dim_idx) = Lasso;
-% save('simulation_res/3D&4D/Lasso_res','Lasso_res')
+save('simulation_res/3D&4D/Lasso_res','Lasso_res')
 
 
 %% Elasticnet (vectorize X)
@@ -304,10 +304,10 @@ end
 
 Ela_res(dim_idx) = Ela;
 
-% save('simulation_res/3D&4D/Ela_res','Ela_res')
+save('simulation_res/3D&4D/Ela_res','Ela_res')
 
 %% SURF
-
+if length(options.p) == 3
 % parameter settings
 addpath('SURF_code/')
 addpath('SURF_code/tensorlab/')
@@ -366,6 +366,6 @@ end
 
 SURF_res(dim_idx) = SURF;
 
-% save('simulation_res/3D&4D/SURF_res','SURF_res')
-
+save('simulation_res/3D&4D/SURF_res','SURF_res')
+end
 end
