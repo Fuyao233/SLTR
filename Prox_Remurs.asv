@@ -46,9 +46,7 @@ function [estimatedW, errSeq, time, startApprox, mid] = Prox_Remurs(X, Y, tau, l
         disp('Pre-computation')
         tic;
         mid = vecX' * vecX;
-        tmp = mid + epsilon * eye(prodP);
-        [L U] = factor(tmp, 1);
-        startApprox = (inv(U)* inv(L)) * vecX' * Y;
+        startApprox = ( (mid + epsilon * eye(prodP)) \ eye(prodP) ) * vecX' * Y;
         startApprox = reshape(startApprox, p(1:M)); % reshape to a tensor
         startApprox(isnan(startApprox)) = 0;
         totalTime = toc;
