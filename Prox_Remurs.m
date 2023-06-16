@@ -43,12 +43,18 @@ function [estimatedW, errSeq, time, startApprox, mid] = Prox_Remurs(X, Y, tau, l
             
         % after code optimization
         vecX = Unfold(X, p, dims);
+        numFea   = size(vecX,2);
+        numSam   = size(vecX,1);
         disp('Pre-computation')
         tic;
-        mid = vecX' * vecX;
-        tmp = mid + epsilon * eye(prodP);
-        [L U] = factor(tmp, 1);
-        startApprox = (inv(U)* inv(L)) * vecX' * Y;
+        [L U] = factor(vecX, 1);
+        q = vecX' * Y;
+        if numSam >= numFea
+            startApprox = U \ (L \ q);
+        else
+            startApprox = q - vecX' * ( U \ (L \ vecX * q));
+        end
+        
         startApprox = reshape(startApprox, p(1:M)); % reshape to a tensor
         startApprox(isnan(startApprox)) = 0;
         totalTime = toc;
