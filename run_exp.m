@@ -131,7 +131,7 @@ if dim_idx == 1
 end
 
 Remurs_res(dim_idx) = Remur;
-save('simulation_res/Remurs_res','Remurs_res')
+save('simulation_res/3D&4D/Remurs_res','Remurs_res')
 
 % break
 
@@ -192,7 +192,7 @@ if dim_idx == 1
 end
 
 Prox_Remur_res(dim_idx) = Prox_Remur;
-save('simulation_res/Prox_Remur_res','Prox_Remur_res')
+save('simulation_res/3D&4D/Prox_Remur_res','Prox_Remur_res')
 
 
 %% Lasso
