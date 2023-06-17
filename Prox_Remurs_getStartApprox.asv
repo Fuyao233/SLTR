@@ -14,16 +14,7 @@ function [startApprox, totalTime] = Prox_Remurs_getStartApprox(X, Y, epsilon)
     disp('Pre-computation')
     if epsilon > 0
         tic;
-        [L, U] = factor(vecX, 1);
-        numFea   = size(vecX,2);
-        numSam   = size(vecX,1);
-        q = vecX' * Y;
-        if numSam >= numFea
-            startApprox = U \ (L \ q);
-        else
-            startApprox = q - vecX' * ( U \ (L \ vecX * q));
-        end
-        
+        startApprox = ( (vecX' * vecX + epsilon * eye(prodP)) \ eye(prodP) ) * vecX' * Y;
     else
         tic;
         [L, U] = factor(vecX, 1);
@@ -34,6 +25,8 @@ function [startApprox, totalTime] = Prox_Remurs_getStartApprox(X, Y, epsilon)
         
         numFea   = size(vecX,2);
         numSam   = size(vecX,1);
+
+        [L, U] = factor(vecX, 1);
         q = vecX' * Y;
         if numSam >= numFea
             startApprox = U \ (L \ q);

@@ -47,7 +47,7 @@ function [estimatedW, errSeq, time, startApprox, mid] = Prox_Remurs(X, Y, tau, l
         numSam   = size(vecX,1);
         disp('Pre-computation')
         tic;
-        [L U] = factor(vecX, 1);
+        [L, U] = factor(vecX, 1);
         q = vecX' * Y;
         if numSam >= numFea
             startApprox = U \ (L \ q);
