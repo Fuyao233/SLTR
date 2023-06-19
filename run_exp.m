@@ -46,7 +46,7 @@ warning off;
 
 rng(114514);
 for dim_idx = 1:length(pList)
-% dim_idx = 6;
+dim_idx = 2;
 %% Generate simulated datasets
 %clear X W Y Xvec Wvec invertX estimatedW fit;
 % parameters for generating datasets��
@@ -80,60 +80,60 @@ disp(options)
 %% Experiment settings
 repeat =2;
 
-%% Remurs
-
-% parameter settings
+% %% Remurs
+% 
+% % parameter settings
 addpath('RemursCode/Code/')
-disp('===== Remurs =====')
-setting = expSet;
-epsilon=1e-4;
-iter=1000;
-% time cost
-totalTime = 0;
-totalMSE = 0;
-totalEE = 0;
-
-matrixY=reshape(Y.data,[options.N 1]);
-
-[cvAlpha, cvBeta, cv_time] = cv_Remurs(double(invertX), matrixY, options.p,...
-        [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
-        [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
-        1, iter, epsilon);
-% cvAlpha = 5;
-% cvBeta = 1;
-
-for it = 1:repeat
-    tic
-    [estimatedW, errList] = Remurs(double(invertX), matrixY, cvAlpha, cvBeta, epsilon, iter);
-    t = toc;
-    totalTime = totalTime + t;
-    predY = ttt(tensor(X), tensor(estimatedW), 2:M+1, 1:M);
-    totalMSE = totalMSE + (norm(tensor(predY.data, [options.N, 1]) - tensor(matrixY)) / options.N);
-    error = reshape(W.data, options.p)-estimatedW;
-    totalEE = totalEE + (norm(tensor(error)) /norm(tensor(W)));
-    %totalEE = totalEE + (norm(tensor(error)) / prod(options.p)); 
-end
-fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
-fprintf('Response  Error is %.4f\n',totalMSE / repeat)
-fprintf('Estimation Error is %.4f\n',totalEE / repeat)
-fprintf('cv_time is %.4f\n',cv_time)
-
-
-Remur.totalTime = totalTime / repeat;
-Remur.totalMSE = totalMSE / repeat;
-Remur.totalEE = totalEE / repeat;
-Remur.cv_time = cv_time;
-Remur.cv_par = [cvAlpha, cvBeta];
-
-
-if dim_idx == 1
-    Remurs_res = repmat(Remur, 1, length(N));
-end
-
-Remurs_res(dim_idx) = Remur;
-save('simulation_res/3D&4D/Remurs_res','Remurs_res')
-
-% break
+% disp('===== Remurs =====')
+% setting = expSet;
+% epsilon=1e-4;
+% iter=1000;
+% % time cost
+% totalTime = 0;
+% totalMSE = 0;
+% totalEE = 0;
+% 
+% matrixY=reshape(Y.data,[options.N 1]);
+% 
+% [cvAlpha, cvBeta, cv_time] = cv_Remurs(double(invertX), matrixY, options.p,...
+%         [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
+%         [5*10^-3, 10^-2, 5*10^-2, 10^-1, 5*10^-1, 10^0, 5*10^0],...
+%         1, iter, epsilon);
+% % cvAlpha = 5;
+% % cvBeta = 1;
+% 
+% for it = 1:repeat
+%     tic
+%     [estimatedW, errList] = Remurs(double(invertX), matrixY, cvAlpha, cvBeta, epsilon, iter);
+%     t = toc;
+%     totalTime = totalTime + t;
+%     predY = ttt(tensor(X), tensor(estimatedW), 2:M+1, 1:M);
+%     totalMSE = totalMSE + (norm(tensor(predY.data, [options.N, 1]) - tensor(matrixY)) / options.N);
+%     error = reshape(W.data, options.p)-estimatedW;
+%     totalEE = totalEE + (norm(tensor(error)) /norm(tensor(W)));
+%     %totalEE = totalEE + (norm(tensor(error)) / prod(options.p)); 
+% end
+% fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
+% fprintf('Response  Error is %.4f\n',totalMSE / repeat)
+% fprintf('Estimation Error is %.4f\n',totalEE / repeat)
+% fprintf('cv_time is %.4f\n',cv_time)
+% 
+% 
+% Remur.totalTime = totalTime / repeat;
+% Remur.totalMSE = totalMSE / repeat;
+% Remur.totalEE = totalEE / repeat;
+% Remur.cv_time = cv_time;
+% Remur.cv_par = [cvAlpha, cvBeta];
+% 
+% 
+% if dim_idx == 1
+%     Remurs_res = repmat(Remur, 1, length(N));
+% end
+% 
+% Remurs_res(dim_idx) = Remur;
+% save('simulation_res/3D&4D/Remurs_res','Remurs_res')
+% 
+% % break
 
 %% Prox_Remurs
 % parameter settings
@@ -157,10 +157,11 @@ matrixY=reshape(Y.data,[options.N 1]);
         [0.1, 0.2, 0.3],...
     rho, 1, maxIter, minDiff);
 
-% cvTau = 0.01;
-% cvLambda = 1e-4;
+% cvTau = 0.5;
+% cvLambda = 0.1;
 % cvEpsilon = 0.1;
 
+disp('==================================================')
 for it = 1:repeat
     tic
     [estimatedW, errSeq, it_time] = Prox_Remurs(double(invertX), matrixY, cvTau, cvLambda, cvEpsilon, rho, maxIter, minDiff);
@@ -179,21 +180,22 @@ end
 fprintf('Elapsed time is %.4f sec\n',totalTime / repeat)
 fprintf('Response  Error is %.4f\n',totalMSE / repeat)
 fprintf('Estimation Error is %.4f\n',totalEE / repeat)
+% 
+% Prox_Remur.totalTime = totalTime / repeat;
+% Prox_Remur.totalMSE = totalMSE / repeat;
+% Prox_Remur.totalEE = totalEE / repeat;
+% Prox_Remur.part_time = iteration_time / repeat;
+% Prox_Remur.cv_time = cv_time;
+% Prox_Remur.cv_par = [cvTau, cvLambda, cvEpsilon];
+% 
+% if dim_idx == 1
+%     Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
+% end
+% 
+% Prox_Remur_res(dim_idx) = Prox_Remur;
+% save('simulation_res/3D&4D/Prox_Remur_res','Prox_Remur_res')
 
-Prox_Remur.totalTime = totalTime / repeat;
-Prox_Remur.totalMSE = totalMSE / repeat;
-Prox_Remur.totalEE = totalEE / repeat;
-Prox_Remur.part_time = iteration_time / repeat;
-Prox_Remur.cv_time = cv_time;
-Prox_Remur.cv_par = [cvTau, cvLambda, cvEpsilon];
-
-if dim_idx == 1
-    Prox_Remur_res = repmat(Prox_Remur, 1, length(N));
-end
-
-Prox_Remur_res(dim_idx) = Prox_Remur;
-save('simulation_res/3D&4D/Prox_Remur_res','Prox_Remur_res')
-
+break
 
 %% Lasso
 % parameter settings

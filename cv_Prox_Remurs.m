@@ -178,6 +178,9 @@ function [cvTau, cvLambda, cvEpsilon, time] = cv_Prox_Remurs(X, Y, p, tauList, l
 %               [estimatedW, ~, iteration_time] = Prox_Remurs(double(Xtrain), double(Ytrain), pars(1), pars(2), pars(3), rho, maxIter, minDiff);
             end
             time(2) = time(2) + iteration_time(2);
+            if iteration_time(2) > 1
+                disp('???');
+            end
 
             % compute MSE
             
